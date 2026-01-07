@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FallSafe - From Classroom to Community Impact</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+        background: #ffffff;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Hero Carousel */
+      .hero-carousel {
+        position: relative;
+        height: 80vh;
+        min-height: 500px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .slide-content h1,
+      .slide-content p {
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 56px;
+        height: 56px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 50%;
+
+        cursor: pointer;
+        z-index: 4;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(0, 0, 0, 0.75);
+      }
+
+      .carousel-arrow {
+        color: white; /* THIS is the key */
+      }
+
+      .carousel-arrow svg {
+        width: 22px;
+        height: 22px;
+        stroke: currentColor; /* inherits from parent */
+        stroke-width: 2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .carousel-arrow.left {
+        left: 30px;
+      }
+
+      .carousel-arrow.right {
+        right: 30px;
+      }
+
+      /* =========================
+   SLIDES
+   ========================= */
+
+      .carousel-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .carousel-slide.active {
+        opacity: 1;
+      }
+
+      .carousel-slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      /* =========================
+   DOTS (base)
+   ========================= */
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 3;
+      }
+
+      .slide-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        padding: 40px;
+        max-width: 900px;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slide-content h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .slide-content p {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        opacity: 0.95;
+      }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 3;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background: white;
+        width: 32px;
+        border-radius: 6px;
+      }
+
+      /* Attribution Section */
+      .attribution {
+        padding: 60px 20px;
+        background: #f9fafb;
+        text-align: center;
+      }
+
+      .attribution h2 {
+        font-size: 1.1rem;
+        color: #6b7280;
+        margin-bottom: 30px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .logo-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+
+      .logo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .logo-placeholder {
+        object-fit: cover;
+      }
+
+      /* 1st element */
+      .fallsafe-logo-placeholder {
+        width: 280px;
+      }
+
+      /* 1st element */
+      .np-logo-placeholder {
+        width: 260px;
+      }
+
+      /* 2nd element */
+      .lb-logo-placeholder {
+        width: 100px;
+      }
+
+      /* 3rd element */
+      .dell-logo-placeholder {
+        width: 160px;
+      }
+
+      ⚠️ Important notes .partners-label {
+        font-size: 0.9rem;
+        color: #6b7280;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      /* Vision Quote Section */
+      .vision-section {
+        position: relative;
+        padding: 120px 20px;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: white;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .vision-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23ffffff" opacity="0.03"/></svg>')
+          repeat;
+        opacity: 0.1;
+      }
+
+      .vision-content {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+
+      .vision-photo {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        flex-shrink: 0;
+      }
+
+      .vision-text {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .vision-quote {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 30px;
+        font-style: italic;
+      }
+
+      .vision-attribution {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      /* Journey Section */
+      .journey-section {
+        padding: 100px 20px;
+        background: white;
+      }
+
+      .journey-section h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-align: center;
+        margin-bottom: 80px;
+        font-weight: 700;
+      }
+
+      .timeline {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 80px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+      }
+
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .timeline-content h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 15px;
+        color: #1e3a8a;
+      }
+
+      .timeline-content p {
+        font-size: 1.1rem;
+        color: #4b5563;
+        margin-bottom: 12px;
+      }
+
+      .timeline-content ul {
+        margin-left: 20px;
+        margin-top: 15px;
+      }
+
+      .timeline-content li {
+        font-size: 1rem;
+        color: #6b7280;
+        margin-bottom: 8px;
+      }
+
+      .timeline-image {
+        width: 100%;
+        height: 300px;
+        border-radius: 16px;
+        object-fit: cover;
+      }
+
+      .achievement-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        margin-top: 15px;
+        font-size: 0.95rem;
+      }
+
+      /* Impact Section */
+      .impact-section {
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+      }
+
+      .impact-section h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-align: center;
+        margin-bottom: 60px;
+        font-weight: 700;
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .impact-card {
+        padding: 30px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .impact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .impact-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .impact-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        color: #1e3a8a;
+      }
+
+      .impact-card p {
+        color: #6b7280;
+        line-height: 1.6;
+      }
+
+      /* Team Section */
+      .team-section {
+        padding: 100px 20px;
+        background: white;
+      }
+
+      .team-section h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-align: center;
+        margin-bottom: 60px;
+        font-weight: 700;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
+        gap: 40px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* Jeffrey spans full first row */
+      .team-lead {
+        grid-column: 1 / -1;
+      }
+
+      .team-card {
+        text-align: center;
+      }
+
+      .team-photo {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .team-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+        color: #1a1a1a;
+      }
+
+      .team-card p {
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+
+      /* Acknowledgements Section */
+      .acknowledgements {
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: white;
+        text-align: center;
+      }
+
+      .acknowledgements h2 {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 30px;
+        font-weight: 700;
+      }
+
+      .acknowledgements p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 15px;
+        line-height: 1.8;
+        opacity: 0.95;
+      }
+
+      /* Responsive adjustments */
+      /* Controls container */
+      .carousel-controls {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+
+        padding: 10px 16px; /* padding around dots + arrows */
+        border-radius: 999px; /* soft pill shape */
+        background: rgba(0, 0, 0, 0.25); /* subtle backdrop for clarity */
+
+        z-index: 4;
+      }
+
+      /* Arrows become inline (not floating) */
+      .carousel-arrow {
+        position: static;
+        transform: none;
+
+        width: 44px;
+        height: 44px;
+      }
+
+      .carousel-arrow svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Dots inline & centred */
+      .carousel-dots {
+        position: static;
+        transform: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .team-photo-wrapper {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+
+      /* Keep image perfectly circular */
+      .team-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: filter 0.3s ease;
+      }
+      .linkedin-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(250, 252, 255, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        border-radius: 50%;
+
+        /* 👇 key part */
+        transition: opacity 0.35s cubic-bezier(0.4, 0, 1, 1);
+      }
+
+      .linkedin-icon {
+        width: 72px;
+        height: 72px;
+      }
+
+      .team-photo-wrapper:hover .linkedin-overlay {
+        opacity: 1;
+      }
+
+      .team-photo-wrapper:hover .team-photo {
+        filter: brightness(0.7);
+      }
+
+      .team-photo-wrapper:hover .linkedin-overlay,
+      .team-photo-wrapper:focus-visible .linkedin-overlay {
+        opacity: 1;
+      }
+
+      .team-photo-wrapper:hover .team-photo {
+        filter: brightness(0.75);
+      }
+
+      /* Mobile tap friendliness */
+      .team-photo-wrapper {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      @media (min-width: 768px) {
+        .timeline-item {
+          grid-template-columns: 1fr 1fr;
+          gap: 50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+          order: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-image {
+          order: 1;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .hero-carousel {
+          height: 70vh;
+        }
+
+        .slide-content {
+          padding: 20px;
+        }
+
+        .slide-content h1 {
+          font-size: 2rem; /* smaller, controlled */
+          line-height: 1.25;
+          word-break: keep-all; /* prevents ugly breaks */
+          hyphens: none;
+        }
+
+        .slide-content p {
+          font-size: 1.45rem;
+          margin-top: 10px;
+        }
+
+        /* Shrink team layout */
+        .team-grid {
+          gap: 20px;
+        }
+
+        .team-photo {
+          width: 120px;
+          height: 120px;
+        }
+
+        .team-card h3 {
+          font-size: 1rem;
+        }
+
+        .team-card p {
+          font-size: 0.85rem;
+        }
+
+        .logo-grid {
+          gap: 40px;
+        }
+
+        .logo-placeholder {
+          width: 140px;
+        }
+
+        /* 1st element */
+        .fallsafe-logo-placeholder {
+          width: 280px;
+        }
+
+        /* 1st element */
+        .np-logo-placeholder {
+          width: 260px;
+        }
+
+        /* 2nd element */
+        .lb-logo-placeholder {
+          width: 100px;
+        }
+
+        /* 3rd element */
+        .dell-logo-placeholder {
+          width: 160px;
+        }
+
+        .vision-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .vision-photo {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Carousel -->
+    <section class="hero-carousel">
+      <div
+        class="carousel-slide active"
+        style="background: url('./img/hero-lhl.jpg') center/cover"
+      >
+        <div class="slide-content">
+          <h1>
+            🏆 Lee Hsien Loong Interactive Digital Media Smart Nation Award
+          </h1>
+          <p>
+            National recognition for meaningful technology applied to real
+            societal needs
+          </p>
+        </div>
+      </div>
+      <div
+        class="carousel-slide"
+        style="background: url('./img/hero-bt.png') center/cover"
+      >
+        <div class="slide-content">
+          <h1>📰 Featured in The Business Times</h1>
+          <p>Highlighting student innovation and community impact</p>
+        </div>
+      </div>
+
+      <div
+        class="carousel-slide"
+        style="background: url('./img/hero-sea.jpg') center/cover"
+      >
+        <div class="slide-content">
+          <h1>🎓 Outstanding Innovation Award</h1>
+          <p>Student Excellence Award – Ngee Ann Polytechnic</p>
+        </div>
+      </div>
+      <div
+        class="carousel-slide"
+        style="background: url('./img/hero-dell.jpg') center/cover"
+      >
+        <div class="slide-content">
+          <h1>🏆 1st Place Dell Innovate Dash 2025</h1>
+          <p>
+            Hackathon in Collaboration with Ngee Ann Polytechnic, Lions
+            Befrienders & Dell Technologies
+          </p>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <div class="carousel-arrow left" onclick="prevSlide()">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="14,6 8,12 14,18" />
+          </svg>
+        </div>
+
+        <div class="carousel-dots">
+          <div class="dot active" data-slide="0"></div>
+          <div class="dot" data-slide="1"></div>
+          <div class="dot" data-slide="2"></div>
+          <div class="dot" data-slide="3"></div>
+        </div>
+
+        <div class="carousel-arrow right" onclick="nextSlide()">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="10,6 16,12 10,18" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Attribution -->
+    <!-- Attribution -->
+    <section class="attribution">
+      <h2>Created By</h2>
+
+      <!-- FallSafe + NP -->
+      <div class="logo-grid created-by-grid">
+        <div class="logo-item">
+          <img
+            src="./img/fallsafe.png"
+            alt="FallSafe Logo"
+            class="fallsafe-logo-placeholder logo-placeholder"
+          />
+        </div>
+        <div class="logo-item">
+          <img
+            src="./img/logo-np.png"
+            alt="Ngee Ann Polytechnic Logo"
+            class="np-logo-placeholder logo-placeholder"
+          />
+        </div>
+      </div>
+
+      <p class="partners-label">Supported By</p>
+
+      <!-- Partners -->
+      <div class="logo-grid">
+        <div class="logo-item">
+          <img
+            src="./img/logo-lb.png"
+            alt="Lions Befrienders Logo"
+            class="lb-logo-placeholder logo-placeholder"
+          />
+        </div>
+        <div class="logo-item">
+          <img
+            src="./img/logo-dell.png"
+            alt="Dell Technologies Logo"
+            class="dell-logo-placeholder logo-placeholder"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision Quote -->
+    <section class="vision-section">
+      <div class="vision-content">
+        <img
+          src="./img/jeffrey.jpg"
+          alt="Jeffrey - Team Lead"
+          class="vision-photo"
+        />
+        <div class="vision-text">
+          <div class="vision-quote">
+            "We want fall-risk assessments to be simple, independent, and
+            accessible so seniors can take action early, not after an accident."
+          </div>
+          <div class="vision-attribution">- Jeffrey, (FallSafe Team Lead)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey -->
+    <section class="journey-section">
+      <div class="container">
+        <h2>How FallSafe Began</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Origin</h3>
+              <p>
+                FallSafe started as part of a Cloud Native Architecture and
+                Development module. The module focuses on building real-world
+                cloud-native systems, covering:
+              </p>
+              <ul>
+                <li>Backend services with Golang</li>
+                <li>Cloud platforms (AWS & Azure)</li>
+                <li>Containerisation with Docker</li>
+                <li>Scalable deployment using Kubernetes</li>
+              </ul>
+              <p style="margin-top: 20px">
+                What began as coursework evolved into a solution addressing a
+                critical community need.
+              </p>
+            </div>
+            <img
+              src="./img/journey-cnad.png"
+              alt="Classroom/Module Photo"
+              class="timeline-image"
+            />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Dell Innovate Dash 2025</h3>
+              <p>
+                Developed during Dell Innovate Dash 2025, organised by Dell
+                Technologies in collaboration with Lions Befrienders.
+              </p>
+              <p>
+                The team built a Cloud-Native, AI- and sensor-driven solution
+                that enables fall-risk assessments using only a mobile phone.
+              </p>
+              <span class="achievement-badge">🥇 1st Place Winner</span>
+            </div>
+            <img
+              src="./img/hero-dell.jpg"
+              alt="Dell Innovate Dash Photo"
+              class="timeline-image"
+            />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Institutional Recognition</h3>
+              <p>
+                Awarded Outstanding Innovation Award by Ngee Ann Polytechnic in
+                recognition of technical excellence and social impact.
+              </p>
+              <p>
+                This acknowledgement validated the project's contribution to
+                both the student community and society at large.
+              </p>
+            </div>
+            <img
+              src="./img/journey-sea.JPG"
+              alt="Award Ceremony Photo"
+              class="timeline-image"
+            />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Media Recognition</h3>
+              <p>
+                Featured by The Business Times, highlighting student innovation
+                and community impact.
+              </p>
+              <p>
+                The coverage brought attention to how curriculum-based learning
+                can translate into tangible solutions for real-world challenges.
+              </p>
+            </div>
+            <img
+              src="./img/hero-bt.png"
+              alt="Media Feature Photo"
+              class="timeline-image"
+              style="object-position: top"
+            />
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>National Recognition</h3>
+              <p>
+                Represented Ngee Ann Polytechnic and received the Lee Hsien
+                Loong Interactive Digital Media Smart Nation Award.
+              </p>
+              <p>
+                This prestigious recognition celebrates meaningful technology
+                applied to real societal needs, aligning with Singapore's Smart
+                Nation vision.
+              </p>
+              <span class="achievement-badge">🏆 National Award</span>
+            </div>
+            <img
+              src="./img/hero-lhl.jpg"
+              alt="National Award Photo"
+              class="timeline-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact & Purpose -->
+    <section class="impact-section">
+      <div class="container">
+        <h2>Impact & Purpose</h2>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-icon">📱</div>
+            <h3>Accessible Technology</h3>
+            <p>
+              Uses everyday mobile sensors to make fall-risk assessments
+              accessible to everyone, eliminating the need for specialized
+              equipment.
+            </p>
+          </div>
+          <div class="impact-card">
+            <div class="impact-icon">💪</div>
+            <h3>Empowering Seniors</h3>
+            <p>
+              Empowers seniors to understand their physical condition
+              independently, fostering autonomy and confidence.
+            </p>
+          </div>
+          <div class="impact-card">
+            <div class="impact-icon">🛡️</div>
+            <h3>Preventive Action</h3>
+            <p>
+              Encourages preventive measures, such as home modifications,
+              helping reduce fall incidents before they occur.
+            </p>
+          </div>
+          <div class="impact-card">
+            <div class="impact-icon">🌟</div>
+            <h3>Student Innovation</h3>
+            <p>
+              Demonstrates how student innovation can directly serve community
+              needs, bridging education and societal impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team-section">
+      <div class="container">
+        <h2>The Team</h2>
+        <!-- Team -->
+        <section class="team-section">
+          <div class="container">
+            <h2>The Team</h2>
+
+            <div class="team-grid">
+              <!-- Team Lead -->
+              <div class="team-card team-lead">
+                <a
+                  href="https://www.linkedin.com/in/jeffrey-lee-8a9461236/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="team-photo-wrapper"
+                  aria-label="Jeffrey LinkedIn Profile"
+                >
+                  <img
+                    src="./img/team-jeffrey.PNG"
+                    alt="Jeffrey Photo"
+                    class="team-photo"
+                  />
+                  <div class="linkedin-overlay">
+                    <img
+                      src="./img/team-linkedin.png"
+                      alt="LinkedIn"
+                      class="linkedin-icon"
+                    />
+                  </div>
+                </a>
+                <h3>Jeffrey</h3>
+                <p>Team Lead</p>
+              </div>
+
+              <!-- Jovan -->
+              <div class="team-card">
+                <a
+                  href="https://www.linkedin.com/in/jovan-ong/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="team-photo-wrapper"
+                >
+                  <img
+                    src="./img/team-jovan.PNG"
+                    alt="Jovan Ong"
+                    class="team-photo"
+                  />
+                  <div class="linkedin-overlay">
+                    <img
+                      src="./img/team-linkedin.png"
+                      alt="LinkedIn"
+                      class="linkedin-icon"
+                    />
+                  </div>
+                </a>
+                <h3>Jovan Ong</h3>
+                <p>Team Member</p>
+              </div>
+
+              <!-- Daniel -->
+              <div class="team-card">
+                <a
+                  href="https://www.linkedin.com/in/putera-daniel-baker/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="team-photo-wrapper"
+                >
+                  <img
+                    src="./img/team-daniel.PNG"
+                    alt="Daniel Baker"
+                    class="team-photo"
+                  />
+                  <div class="linkedin-overlay">
+                    <img
+                      src="./img/team-linkedin.png"
+                      alt="LinkedIn"
+                      class="linkedin-icon"
+                    />
+                  </div>
+                </a>
+                <h3>Daniel Baker</h3>
+                <p>Team Member</p>
+              </div>
+
+              <!-- Kelvin -->
+              <div class="team-card">
+                <a
+                  href="https://www.linkedin.com/in/kelvintan44/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="team-photo-wrapper"
+                >
+                  <img
+                    src="./img/team-kelvin.JPEG"
+                    alt="Kelvin Tan"
+                    class="team-photo"
+                  />
+                  <div class="linkedin-overlay">
+                    <img
+                      src="./img/team-linkedin.png"
+                      alt="LinkedIn"
+                      class="linkedin-icon"
+                    />
+                  </div>
+                </a>
+                <h3>Kelvin Tan</h3>
+                <p>Team Member</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Acknowledgements -->
+    <section class="acknowledgements">
+      <div class="container">
+        <h2>Acknowledgements</h2>
+        <p>
+          Supported by dedicated lecturers from Ngee Ann Polytechnic who
+          fostered an environment of applied learning and innovation.
+        </p>
+        <p>
+          Collaborated with industry and community partners who believed in the
+          potential of student-led initiatives.
+        </p>
+        <p>
+          Built on a foundation of mentorship, collaboration, and the belief
+          that education should create real-world impact.
+        </p>
+      </div>
+    </section>
+
+    <script>
+      function prevSlide() {
+        showSlide(currentSlide - 1);
+      }
+
+      // Carousel functionality
+      const slides = document.querySelectorAll(".carousel-slide");
+      const dots = document.querySelectorAll(".dot");
+      let currentSlide = 0;
+
+      function showSlide(n) {
+        slides[currentSlide].classList.remove("active");
+        dots[currentSlide].classList.remove("active");
+        currentSlide = (n + slides.length) % slides.length;
+        slides[currentSlide].classList.add("active");
+        dots[currentSlide].classList.add("active");
+      }
+
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+
+      // Auto-advance carousel
+      setInterval(nextSlide, 5000);
+
+      // Dot click handlers
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => showSlide(index));
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".timeline-item").forEach((item) => {
+        observer.observe(item);
+      });
+    </script>
+  </body>
+</html>
