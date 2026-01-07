@@ -937,6 +937,127 @@
           height: 16px;
         }
       }
+
+      /* Impact dividers */
+      .impact-grid {
+        position: relative;
+      }
+
+      .impact-grid::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      /* Vertical dividers */
+      .impact-card {
+        position: relative;
+      }
+
+      @media (min-width: 768px) {
+        .impact-card:not(:nth-child(2n))::after {
+          content: "";
+          position: absolute;
+          top: 15%;
+          right: -20px;
+          width: 1px;
+          height: 70%;
+          background: #e5e7eb;
+        }
+      }
+
+      /* Horizontal dividers */
+      @media (min-width: 768px) {
+        .impact-card:nth-child(n + 3)::before {
+          content: "";
+          position: absolute;
+          top: -20px;
+          left: 10%;
+          width: 80%;
+          height: 1px;
+          background: #e5e7eb;
+        }
+      }
+
+      /* Divider built into each Journey section */
+      .timeline-item {
+        padding-bottom: 60px; /* space before the line */
+        margin-bottom: 60px; /* space after the line */
+
+        background-image: linear-gradient(
+          to right,
+          transparent,
+          rgba(0, 0, 0, 0.12),
+          transparent
+        );
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: 80% 1px; /* length + thickness */
+      }
+
+      /* No divider on the last item */
+      .timeline-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        background-image: none;
+      }
+
+      @media (max-width: 767px) {
+        .timeline-item {
+          padding-bottom: 40px;
+          margin-bottom: 40px;
+          background-size: 100% 1px;
+        }
+      }
+
+      /* Media link button */
+      .media-link-btn {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 10px 22px;
+
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+
+        color: #1e3a8a;
+        border: 2px solid #1e3a8a;
+        border-radius: 999px;
+
+        transition: all 0.25s ease;
+      }
+
+      .media-link-btn:hover {
+        background: #1e3a8a;
+        color: white;
+        transform: translateY(-1px);
+      }
+
+      /* Mobile: Header → Image → Text */
+      @media (max-width: 767px) {
+        .timeline-item {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "title"
+            "image"
+            "content";
+        }
+
+        .timeline-content h3 {
+          grid-area: title;
+        }
+
+        .timeline-image {
+          grid-area: image;
+          margin: 16px 0 20px;
+        }
+
+        .timeline-content {
+          grid-area: content;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1061,6 +1182,10 @@
         <div class="overview-carousel">
           <div
             class="overview-slide active"
+            style="background-image: url('./img/hero-lhl.jpg')"
+          ></div>
+          <div
+            class="overview-slide"
             style="background-image: url('./img/fallsafe-intro-1.jpg')"
           ></div>
           <div
@@ -1088,6 +1213,7 @@
           <!-- Dots -->
           <div class="overview-dots">
             <span class="overview-dot active"></span>
+            <span class="overview-dot"></span>
             <span class="overview-dot"></span>
             <span class="overview-dot"></span>
           </div>
@@ -1213,6 +1339,14 @@
                 The coverage brought attention to how curriculum-based learning
                 can translate into tangible solutions for real-world challenges.
               </p>
+              <a
+                href="https://www.businesstimes.com.sg/lifestyle/ngee-ann-poly-students-app-uses-tech-ai-help-seniors-avoid-falls"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="media-link-btn"
+              >
+                Read The Business Times Feature →
+              </a>
             </div>
             <img
               src="./img/hero-bt.png"
