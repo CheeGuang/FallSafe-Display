@@ -609,6 +609,25 @@
         -webkit-tap-highlight-color: transparent;
       }
 
+      /* Section headings */
+      .journey-section h2,
+      .impact-section h2,
+      .team-section h2,
+      .acknowledgements h2 {
+        margin-bottom: 1px; /* tighten gap */
+      }
+
+      /* Section subtitles */
+      .section-subtitle {
+        max-width: 720px;
+        margin: 0 auto 60px; /* remove top margin entirely */
+        text-align: center;
+
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        line-height: 1.7;
+        color: #6b7280;
+      }
+
       @media (min-width: 768px) {
         .timeline-item {
           grid-template-columns: 1fr 1fr;
@@ -625,6 +644,18 @@
       }
 
       @media (max-width: 767px) {
+        .journey-section h2,
+        .impact-section h2,
+        .team-section h2,
+        .acknowledgements h2 {
+          margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+          margin-bottom: 40px;
+          padding: 0 10px;
+        }
+
         .hero-carousel {
           height: 70vh;
         }
@@ -892,6 +923,10 @@
     <section class="journey-section">
       <div class="container">
         <h2>How FallSafe Began</h2>
+        <p class="section-subtitle">
+          From a classroom module to a nationally recognised solution addressing
+          real community needs.
+        </p>
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-content">
@@ -1006,6 +1041,10 @@
     <section class="impact-section">
       <div class="container">
         <h2>Impact & Purpose</h2>
+        <p class="section-subtitle">
+          Designed to empower seniors, prevent falls early, and demonstrate how
+          education can create meaningful societal change.
+        </p>
         <div class="impact-grid">
           <div class="impact-card">
             <div class="impact-icon">📱</div>
@@ -1049,6 +1088,10 @@
     <section class="team-section">
       <div class="container">
         <h2>FallSafe Team</h2>
+        <p class="section-subtitle">
+          A multidisciplinary student team driven by purpose, collaboration, and
+          applied innovation.
+        </p>
 
         <div class="team-grid">
           <!-- Team Lead -->
