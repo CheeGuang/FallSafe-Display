@@ -473,6 +473,7 @@
       .team-card h3 {
         font-size: 1.3rem;
         margin-bottom: 5px;
+        margin-top: 10px;
         color: #1a1a1a;
       }
 
@@ -677,6 +678,42 @@
 
         .team-card p {
           font-size: 0.8rem;
+        }
+
+        /* Ensure ALL team cards are centered in their grid cells */
+        .team-card {
+          justify-self: center;
+          text-align: center;
+        }
+
+        /* Ensure team lead is centered too */
+        .team-lead {
+          justify-self: center;
+        }
+
+        /* Remove side bias from section */
+        .team-section {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        /* Re-centre content cleanly */
+        .team-section .container {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        /* Ensure heading is visually centered */
+        .team-section h2 {
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+        }
+
+        /* Grid itself truly centered */
+        .team-grid {
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .logo-grid {
