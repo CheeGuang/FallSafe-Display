@@ -644,22 +644,41 @@
           margin-top: 10px;
         }
 
-        /* Shrink team layout */
+        /* Mobile team layout: 1 + 3 */
         .team-grid {
-          gap: 20px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
         }
 
-        .team-photo {
+        /* Jeffrey stays full width */
+        .team-lead {
+          grid-column: 1 / -1;
+        }
+
+        /* 🔥 Bigger avatars */
+        .team-photo-wrapper {
           width: 120px;
           height: 120px;
         }
 
+        .team-photo {
+          width: 100%;
+          height: 100%;
+        }
+
+        /* Bigger LinkedIn icon */
+        .linkedin-icon {
+          width: 44px;
+          height: 44px;
+        }
+
+        /* Text slightly larger */
         .team-card h3 {
-          font-size: 1rem;
+          font-size: 1.05rem;
         }
 
         .team-card p {
-          font-size: 0.85rem;
+          font-size: 0.9rem;
         }
 
         .logo-grid {
