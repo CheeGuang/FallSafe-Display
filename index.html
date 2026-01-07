@@ -248,6 +248,34 @@
         font-weight: 500;
       }
 
+      /* FallSafe Overview Section */
+      .fallsafe-overview {
+        padding: 100px 20px;
+        background: #ffffff;
+        text-align: center;
+      }
+
+      .fallsafe-overview h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 40px;
+      }
+
+      .fallsafe-overview-image {
+        max-width: 520px;
+        width: 100%;
+        margin: 0 auto 40px;
+        display: block;
+      }
+
+      .fallsafe-overview-text {
+        max-width: 800px;
+        margin: 0 auto 20px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4b5563;
+      }
+
       /* Vision Quote Section */
       .vision-section {
         position: relative;
@@ -629,6 +657,20 @@
       }
 
       @media (min-width: 768px) {
+        .fallsafe-overview {
+          padding: 80px 20px;
+        }
+
+        .fallsafe-overview-image {
+          max-width: 320px;
+          margin-bottom: 30px;
+        }
+
+        .fallsafe-overview-text {
+          font-size: 1rem;
+          padding: 0 10px;
+        }
+
         .timeline-item {
           grid-template-columns: 1fr 1fr;
           gap: 50px;
@@ -785,6 +827,116 @@
           height: 200px;
         }
       }
+
+      /* =========================
+   FallSafe Overview Carousel
+   ========================= */
+
+      .overview-carousel {
+        position: relative;
+        max-width: 520px; /* NOT full width */
+        height: 320px; /* NOT hero-sized */
+        margin: 0 auto 40px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .overview-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .overview-slide.active {
+        opacity: 1;
+      }
+
+      /* Dots */
+      .overview-dots {
+        position: absolute;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+
+      .overview-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .overview-dot.active {
+        width: 20px;
+        border-radius: 6px;
+        background: white;
+      }
+
+      /* Overview arrows */
+      .overview-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 2;
+
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      .overview-arrow:hover {
+        background: rgba(0, 0, 0, 0.75);
+      }
+
+      .overview-arrow svg {
+        width: 18px;
+        height: 18px;
+        stroke: white;
+        stroke-width: 2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .overview-arrow.left {
+        left: 12px;
+      }
+
+      .overview-arrow.right {
+        right: 12px;
+      }
+
+      /* Mobile */
+      @media (max-width: 767px) {
+        .overview-carousel {
+          height: 220px;
+          max-width: 100%;
+        }
+
+        .overview-arrow {
+          width: 32px;
+          height: 32px;
+        }
+
+        .overview-arrow svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -898,6 +1050,63 @@
             class="dell-logo-placeholder logo-placeholder"
           />
         </div>
+      </div>
+    </section>
+
+    <!-- FallSafe Overview -->
+    <section class="fallsafe-overview">
+      <div class="container">
+        <h2>What is FallSafe?</h2>
+
+        <div class="overview-carousel">
+          <div
+            class="overview-slide active"
+            style="background-image: url('./img/fallsafe-intro-1.jpg')"
+          ></div>
+          <div
+            class="overview-slide"
+            style="background-image: url('./img/fallsafe-intro-2.jpg')"
+          ></div>
+          <div
+            class="overview-slide"
+            style="background-image: url('./img/fallsafe-intro-3.jpg')"
+          ></div>
+
+          <!-- Arrows -->
+          <div class="overview-arrow left" onclick="prevOverviewSlide()">
+            <svg viewBox="0 0 24 24">
+              <polyline points="14,6 8,12 14,18" />
+            </svg>
+          </div>
+
+          <div class="overview-arrow right" onclick="nextOverviewSlide()">
+            <svg viewBox="0 0 24 24">
+              <polyline points="10,6 16,12 10,18" />
+            </svg>
+          </div>
+
+          <!-- Dots -->
+          <div class="overview-dots">
+            <span class="overview-dot active"></span>
+            <span class="overview-dot"></span>
+            <span class="overview-dot"></span>
+          </div>
+        </div>
+
+        <p class="fallsafe-overview-text">
+          <strong>FallSafe</strong> is a Cloud-Native, Artificial Intelligence,
+          and Internet of Things (IoT) solution that enables seniors to assess
+          their <strong>fall risk independently</strong> from the comfort of
+          their homes.
+        </p>
+
+        <p class="fallsafe-overview-text">
+          By using everyday mobile sensors and intelligent analysis, FallSafe
+          helps seniors
+          <strong>better understand their physical condition</strong> and take
+          <strong>pre-emptive actions</strong>, such as improving home safety,
+          before a fall occurs.
+        </p>
       </div>
     </section>
 
@@ -1266,6 +1475,24 @@
       document.querySelectorAll(".timeline-item").forEach((item) => {
         observer.observe(item);
       });
+
+      const overviewSlides = document.querySelectorAll(".overview-slide");
+      const overviewDots = document.querySelectorAll(".overview-dot");
+      let overviewIndex = 0;
+
+      function showOverviewSlide(index) {
+        overviewSlides[overviewIndex].classList.remove("active");
+        overviewDots[overviewIndex].classList.remove("active");
+
+        overviewIndex = index;
+
+        overviewSlides[overviewIndex].classList.add("active");
+        overviewDots[overviewIndex].classList.add("active");
+      }
+
+      setInterval(() => {
+        showOverviewSlide((overviewIndex + 1) % overviewSlides.length);
+      }, 4500);
     </script>
   </body>
 </html>
