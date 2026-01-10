@@ -1065,6 +1065,80 @@
           grid-area: content;
         }
       }
+
+      /* Architecture Section */
+      .architecture-section {
+        padding: 100px 20px;
+        background: #f9fafb;
+        text-align: center;
+      }
+
+      .architecture-diagram {
+        max-width: 1000px;
+        width: 100%;
+        margin: 40px auto 50px;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .architecture-text {
+        max-width: 900px;
+        margin: 0 auto 80px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4b5563;
+      }
+
+      .architecture-text p {
+        margin-bottom: 18px;
+      }
+
+      /* Device subsection */
+      .device-section {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        max-width: 1000px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+      }
+
+      .device-image {
+        width: 360px;
+        max-width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .device-text {
+        flex: 1;
+        text-align: left;
+      }
+
+      .device-text h3 {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+        color: #1e3a8a;
+      }
+
+      .device-text p {
+        font-size: 1.05rem;
+        color: #4b5563;
+        margin-bottom: 14px;
+      }
+
+      /* Mobile */
+      @media (max-width: 767px) {
+        .device-section {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .device-text {
+          text-align: center;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1135,7 +1209,6 @@
       </div>
     </section>
 
-    <!-- Attribution -->
     <!-- Attribution -->
     <section class="attribution">
       <h2>Created By</h2>
@@ -1396,6 +1469,49 @@
               class="timeline-image"
             />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Diagram -->
+    <section class="architecture-section">
+      <div class="container">
+        <h2>System Architecture</h2>
+        <p class="section-subtitle">
+          A cloud-native, microservices-based architecture designed for
+          scalability, reliability, and real-world deployment.
+        </p>
+
+        <!-- Architecture Diagram -->
+        <img
+          src="./img/architecture-diagram.png"
+          alt="FallSafe System Architecture Diagram"
+          class="architecture-diagram"
+        />
+
+        <!-- Architecture Explanation -->
+        <div class="architecture-text">
+          <p>
+            FallSafe is built on a
+            <strong>microservices architecture</strong> using
+            <strong>Golang</strong>, containerised with <strong>Docker</strong>,
+            and orchestrated using <strong>Kubernetes</strong> for scalability
+            and fault tolerance.
+          </p>
+
+          <p>
+            Sensor data from the FallSafe device is securely transmitted through
+            <strong>AWS IoT Core</strong>, which acts as a managed IoT message
+            broker, ensuring reliable and encrypted communication between
+            physical devices and backend services.
+          </p>
+
+          <p>
+            This architecture allows each service—such as data ingestion,
+            analysis, and risk assessment—to scale independently, improving
+            performance and system resilience while keeping the solution
+            cloud-ready.
+          </p>
         </div>
       </div>
     </section>
